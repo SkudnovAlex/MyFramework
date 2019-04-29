@@ -35,9 +35,10 @@ class ErrorHandler
     }
 
     /** показ ошибок
-     * @param $erNo
+     * @param $errNo
      * @param $errStr
      * @param $errFile
+     * @param $errLine
      * @param int $responce
      */
     protected function displayError ($errNo, $errStr, $errFile, $errLine, $responce = 404)
