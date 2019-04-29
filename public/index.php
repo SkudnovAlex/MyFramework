@@ -4,5 +4,5 @@ require_once LIB . '/functions.php';
 
 new \ishop\App();
 
-throw new Exception('Страница не найдена', 404);
+
 
