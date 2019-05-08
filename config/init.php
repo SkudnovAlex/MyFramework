@@ -5,7 +5,7 @@ define("WWW", ROOT . "/public");
 define("APP", ROOT . "/app");
 define("CORE", ROOT . "/vendor/ishop/core");
 define("LIB", ROOT . "/vendor/ishop/core/lib");
-define("CACHE", ROOT . "/tmp/cahce");
+define("CACHE", ROOT . "/tmp/cache");
 define("CONF", ROOT . "/config");
 define("TEMPLATE", "default");
 

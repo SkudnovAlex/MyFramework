@@ -3,3 +3,5 @@
 ====================
 [08-05-2019 20:11:50] Ошибка: Метод app\controllers\PageController::viewAction не найдена| Файл: D:\OSPanel\domains\my.framework\vendor\ishop\core\Router.php | Строка: 63
 ====================
+[08-05-2019 21:08:34] Ошибка: Метод app\controllers\PageController::viewAction не найдена| Файл: D:\OSPanel\domains\my.framework\vendor\ishop\core\Router.php | Строка: 62
+====================

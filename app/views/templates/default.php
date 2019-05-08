@@ -12,5 +12,13 @@
 <h2>Шаблон DEFAULT</h2>
 <?=$content?>
 
+<?
+$logs = \R::getDatabaseAdapter()
+    ->getDatabase()
+    ->getLogger();
+
+debug( $logs->grep( 'SELECT' ) );
+?>
+
 </body>
 </html>
