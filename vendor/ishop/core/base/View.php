@@ -3,8 +3,10 @@
 
 namespace ishop\base;
 
-
-
+/** класс вид
+ * Class View
+ * @package ishop\base
+ */
 class View
 {
     public $route;
@@ -32,9 +34,14 @@ class View
         }
     }
 
+    /** генерация самой страницы
+     * @param $data
+     * @throws \Exception
+     */
     public function render($data)
     {
         if (is_array($data)) extract($data);
+
         $viewFile = APP . "/views/{$this->prefix}{$this->controller}/$this->view.php";
         if (is_file($viewFile)) {
             ob_start();
@@ -54,6 +61,9 @@ class View
         }
     }
 
+    /** генерация метаданных
+     * @return string
+     */
     public function getMeta()
     {
         $output = '<title>' . $this->meta['title'] . '</title>';
