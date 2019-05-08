@@ -7,7 +7,7 @@ define("CORE", ROOT . "/vendor/ishop/core");
 define("LIB", ROOT . "/vendor/ishop/core/lib");
 define("CACHE", ROOT . "/tmp/cahce");
 define("CONF", ROOT . "/config");
-define("LAYOUT", "default");
+define("TEMPLATE", "default");
 
 //http://my.framework/public/index.php
 $appPath = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];

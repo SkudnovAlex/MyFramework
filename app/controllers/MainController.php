@@ -3,15 +3,13 @@
 
 namespace app\controllers;
 
-
-use ishop\base\Controller;
-
-class MainController extends App
+class MainController extends AppController
 {
     public function indexAction()
     {
-        debug($this->route);
-        debug($this->controller);
-        echo __METHOD__;
+//        debug($this->route);
+//        debug($this->controller);
+//        echo __METHOD__;
+        $this->setMeta('Главная страница', 'Описание', 'Ключевые слова');
     }
 }
