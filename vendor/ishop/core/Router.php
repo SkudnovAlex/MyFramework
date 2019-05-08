@@ -120,9 +120,12 @@ class Router
         return lcfirst(self::upperCamelCase($name));
     }
 
+    /** вырезание GET параметров из URL
+     * @param $url
+     * @return string
+     */
     protected static function removeQueryString($url)
     {
-        var_dump($url);
         if ($url) {
             $params = explode('&', $url, 2);
             if (strpos($params[0], '=') === false) {

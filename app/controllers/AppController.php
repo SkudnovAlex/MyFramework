@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\controllers;
-
 
 use app\models\AppModel;
 use ishop\base\Controller;
