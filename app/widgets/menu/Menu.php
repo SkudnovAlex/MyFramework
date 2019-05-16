@@ -14,6 +14,7 @@ class Menu
     protected $menuHtml;
     protected $tpl;
     protected $container = 'ul';
+    protected $class = 'menu';
     protected $table = 'category';
     protected $cache = 3600;
     protected $cacheKey = 'ishop_menu';
@@ -47,28 +48,73 @@ class Menu
             if (!$this->data) {
                 $this->data = $cats = \R::getAssoc("SELECT * FROM $this->table");
             }
+            $this->tree = $this->getTree();
+            $this->menuHtml = $this->getMenuHtml($this->tree);
+            if($this->cache){
+                $cache->setCache($this->cacheKey, $this->menuHtml, $this->cache);
+            }
         }
         $this->output();
     }
 
-    //вывод меню
+    /**
+     * вывод меню
+     */
     protected function output()
     {
+        $attrs = '';
+        if (!empty($this->attrs)) {
+            foreach ($this->attrs as $k => $v) {
+                $attrs .= " $k='$v' ";
+            }
+        }
+        echo "<$this->container class='$this->class' $attrs>";
+        echo $this->prepend;
         echo $this->menuHtml;
+        echo "</$this->container>";
     }
 
-    //создание дерева
-    protected function tree()
+    /** создание дерева
+     * @return array
+     */
+    protected function getTree()
     {
+        $tree = [];
+        $data = $this->data;
+        foreach ($data as $id=>&$node) {
+            if (!$node['parent_id']){
+                $tree[$id] = &$node;
+            }else{
+                $data[$node['parent_id']]['childs'][$id] = &$node;
+            }
+        }
+        return $tree;
     }
 
-    //получение HTML меню
+    /** получение HTML меню
+     * @param $tree
+     * @param string $tab
+     * @return string
+     */
     protected function getMenuHtml($tree, $tab = '')
     {
+        $str = '';
+        foreach($tree as $id => $category){
+            $str .= $this->catToTemplate($category, $tab, $id);
+        }
+        return $str;
     }
 
-    //собирает категории и возвращает в общее меню
+    /** собирает категории и возвращает в общее меню
+     * @param $category
+     * @param $tab
+     * @param $id
+     * @return false|string
+     */
     protected function catToTemplate($category, $tab, $id)
     {
+        ob_start();
+        require $this->tpl;
+        return ob_get_clean();
     }
 }
