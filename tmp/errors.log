@@ -185,3 +185,15 @@
 ====================
 [17-05-2019 23:00:31] Ошибка: Страница не найдена| Файл: D:\OSPanel\domains\my.framework\vendor\ishop\core\Router.php | Строка: 68
 ====================
+[18-05-2019 22:08:43] Ошибка: Нет соединения с БД| Файл: D:\OSPanel\domains\my.framework\vendor\ishop\core\Db.php | Строка: 21
+====================
+[18-05-2019 22:08:43] Ошибка: Нет соединения с БД| Файл: D:\OSPanel\domains\my.framework\vendor\ishop\core\Db.php | Строка: 21
+====================
+[18-05-2019 22:08:46] Ошибка: Страница не найдена| Файл: D:\OSPanel\domains\my.framework\vendor\ishop\core\Router.php | Строка: 68
+====================
+[18-05-2019 22:17:21] Ошибка: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'related_product.id' in 'on clause'| Файл: D:\OSPanel\domains\my.framework\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | Строка: 194
+====================
+[18-05-2019 22:41:37] Ошибка: Страница не найдена| Файл: D:\OSPanel\domains\my.framework\vendor\ishop\core\Router.php | Строка: 68
+====================
+[18-05-2019 22:42:08] Ошибка: Страница не найдена| Файл: D:\OSPanel\domains\my.framework\vendor\ishop\core\Router.php | Строка: 68
+====================

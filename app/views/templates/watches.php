@@ -212,6 +212,12 @@
 </script>
 <script src="js/main.js"></script>
 <!--End-slider-script-->
+<?
+$logs = \R::getDatabaseAdapter()
+    ->getDatabase()
+    ->getLogger();
 
+debug( $logs->grep( 'SELECT' ) );
+?>
 </body>
 </html>
