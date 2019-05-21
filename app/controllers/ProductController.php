@@ -3,7 +3,7 @@
 
 namespace app\controllers;
 
-
+use app\models\Product;
 
 class ProductController extends AppController
 {
@@ -21,9 +21,16 @@ class ProductController extends AppController
         //связанные товары
         $related = \R::getAll('SELECT * FROM related_product JOIN product ON product.id = related_product.related_id WHERE related_product.product_id = ?', [$product->id]);
 
-        //TODO запись в куки запрошенного товары
+        //запись в куки запрошенного товары
+        $p_model = new Product();
+        $p_model->setRecentlyViewed($product->id);
 
-        //TODO просмотренные товары
+        //просмотренные товары
+        $r_viewed = $p_model->getRecentlyViewed();
+        $recentlyViewed = null;
+        if ($r_viewed) {
+            $recentlyViewed = \R::find('product', 'id IN (' . \R::genSlots($r_viewed) . ') LIMIT 3', $r_viewed);
+        }
 
         // галерея
         $gallery = \R::findAll('gallery', 'product_id = ?', [$product->id]);
@@ -31,6 +38,6 @@ class ProductController extends AppController
         //TODO модификации
 
         $this->setMeta($product->title, $product->description, $product->keywords);
-        $this->set(compact('product', 'related', 'gallery'));
+        $this->set(compact('product', 'related', 'gallery', 'recentlyViewed'));
     }
 }

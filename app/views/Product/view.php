@@ -164,6 +164,41 @@
                     </div>
                 </div>
                 <?}?>
+
+                <? if ($recentlyViewed) {?>
+                    <div class="latestproducts">
+                        <div class="product-one">
+                            <h3>Недавно просмотренные:</h3>
+                            <?foreach ($recentlyViewed as $item) {?>
+                                <div class="col-md-4 product-left p-left">
+                                    <div class="product-main simpleCart_shelfItem">
+                                        <a href="product/<?=$item['alias']?>" class="mask"><img class="img-responsive zoom-img" src="images/<?=$item['img']?>" alt="" /></a>
+                                        <div class="product-bottom">
+                                            <a href="product/<?=$item['alias']?>"><h3><?=$item['title']?></h3></a>
+                                            <p>Explore Now</p>
+                                            <h4>
+                                                <a class="item_add add-to-cart-link" href="card/add?id=<?=$item['id']?>" data-id="<?=$item['id']?>">
+                                                    <i></i>
+                                                </a>
+                                                <span class=" item_price"><?=$curr['symbol_left']?> <?=$item['price'] * $curr['value'];?> <?=$curr['symbol_right']?></span>
+                                                <? if ($item['old_price']) {?>
+                                                    <del><?=$curr['symbol_left']?> <?=$item['old_price'] * $curr['value'];?> <?=$curr['symbol_right']?></del>
+                                                <?}?>
+                                            </h4>
+                                        </div>
+                                        <? if ($item['old_price']) {
+                                            $countSalePercent = ($item['price'] * 100 / $item['old_price']) - 100;?>
+                                            <div class="srch">
+                                                <span><?=round($countSalePercent)?>%</span>
+                                            </div>
+                                        <?}?>
+                                    </div>
+                                </div>
+                            <?}?>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                <?}?>
             </div>
             <div class="col-md-3 single-right">
                 <div class="w_sidebar">
