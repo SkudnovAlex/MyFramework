@@ -61,6 +61,7 @@
                                 <del><?=$curr['symbol_left']?> <?=$product->old_price * $curr['value'];?> <?=$curr['symbol_right']?></del>
                             <?}?>
                             <?=$product->content?>
+                            <?if ($mods) {?>
                             <div class="available">
                                 <ul>
                                     <li>Color
@@ -75,6 +76,7 @@
                                     <div class="clearfix"> </div>
                                 </ul>
                             </div>
+                            <?}?>
                             <ul class="tag-men">
                                 <li><span>Catecogy</span>
                                     <span>: <a href="category/<?=$cats[$product->category_id]['alias']?>"><?=$cats[$product->category_id]['title']?></a> </span></li>
