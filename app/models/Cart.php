@@ -8,6 +8,11 @@ use ishop\App;
 
 class Cart
 {
+    /** добавление в корзину
+     * @param $product
+     * @param int $qty
+     * @param null $mod
+     */
     public function addToCart($product, $qty = 1, $mod = null)
     {
         if (!isset($_SESSION['cart.currency'])) {
@@ -38,6 +43,9 @@ class Cart
         $_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] + $qty * ($price * $_SESSION['cart.currency']['value']) : $qty * ($price * $_SESSION['cart.currency']['value']);
     }
 
+    /** удаление элемента из корзины
+     * @param $id
+     */
     public function deleteItem($id)
     {
         $qtyMinus = $_SESSION['cart'][$id]['qty'];
@@ -45,5 +53,32 @@ class Cart
         $_SESSION['cart.qty'] -= $qtyMinus;
         $_SESSION['cart.sum'] -= $sumMinus;
         unset($_SESSION['cart'][$id]);
+    }
+
+    /** пересчет валют в корзине
+     * @param $curr
+     */
+    public static function recalc($curr)
+    {
+
+        if (isset($_SESSION['cart.currency'])) {
+            //коэффициент
+            $rate = $_SESSION['cart.currency']['value'] * $curr->value;
+            if ($_SESSION['cart.currency']['base']) {
+                $_SESSION['cart.sum'] *= $curr->value;
+            } else {
+                $_SESSION['cart.sum'] = $_SESSION['cart.sum'] / $rate;
+            }
+            foreach ($_SESSION['cart'] as $k => $v) {
+                if ($_SESSION['cart.currency']['base']) {
+                    $_SESSION['cart'][$k]['price'] *= $curr->value;
+                } else {
+                    $_SESSION['cart'][$k]['price'] = $_SESSION['cart'][$k]['price'] / $rate;
+                }
+            }
+            foreach ($curr as $k => $v) {
+                $_SESSION['cart.currency'][$k] = $v;
+            }
+        }
     }
 }

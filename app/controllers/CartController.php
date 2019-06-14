@@ -36,16 +36,16 @@ class CartController extends AppController
         redirect();
     }
 
-    /**получение корзины
-     *
+    /**
+     * получение корзины
      */
     public function showAction()
     {
         $this->loadView('cart_modal');
     }
 
-    /**удаление элемента из корзины
-     *
+    /**
+     * удаление элемента из корзины
      */
     public function deleteAction()
     {
@@ -58,5 +58,17 @@ class CartController extends AppController
             $this->loadView('cart_modal');
         }
         redirect();
+    }
+
+    /**
+     * очистка корзины
+     */
+    public function clearAction()
+    {
+        unset($_SESSION['cart']);
+        unset($_SESSION['cart.qty']);
+        unset($_SESSION['cart.sum']);
+        unset($_SESSION['cart.currency']);
+        $this->loadView('cart_modal');
     }
 }
