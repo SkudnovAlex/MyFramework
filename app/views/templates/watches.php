@@ -36,13 +36,23 @@
             </div>
             <div class="col-md-6 top-header-left">
                 <div class="cart box_1">
-                    <a href="checkout.html">
+                    <a href="cart/show" onclick="getCart(); return false;">
                         <div class="total">
-                            <span class="simpleCart_total"></span></div>
-                        <img src="images/cart-1.png" alt="" />
+                            <img src="images/cart-1.png" alt="" />
+                            <? if (!empty($_SESSION['cart'])) {?>
+                                <span class="simpleCart_total"><?=$_SESSION['cart.currency']['symbol_left'] . $_SESSION['cart.sum'] . $_SESSION['cart.currency']['symbol_right']?></span>
+                            <?} else {?>
+                                <span class="simpleCart_total">Empty Cart</span>
+                            <?}?>
+                        </div>
                     </a>
-                    <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                    <div class="clearfix"> </div>
+<!--                    <a href="checkout.html">-->
+<!--                        <div class="total">-->
+<!--                            <span class="simpleCart_total"></span></div>-->
+<!--                        <img src="images/cart-1.png" alt="" />-->
+<!--                    </a>-->
+<!--                    <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>-->
+<!--                    <div class="clearfix"> </div>-->
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -179,7 +189,6 @@
 
 <script src="js/jquery-1.11.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/simpleCart.min.js"> </script>
 <!--dropdown-->
 <script src="js/jquery.easydropdown.js"></script>
 <!--Slider-Starts-Here-->

@@ -8,6 +8,9 @@ use app\models\Cart;
 
 class CartController extends AppController
 {
+    /** добавление в корзину
+     * @return bool
+     */
     public function addAction()
     {
         $id = !empty($_GET['id']) ? (int)$_GET['id'] : null;
@@ -27,6 +30,30 @@ class CartController extends AppController
         }
         $cart = new Cart();
         $cart->addToCart($product, $qty, $mod);
+        if ($this->isAjax()) {
+            $this->loadView('cart_modal');
+        }
+        redirect();
+    }
+
+    /**получение корзины
+     *
+     */
+    public function showAction()
+    {
+        $this->loadView('cart_modal');
+    }
+
+    /**удаление элемента из корзины
+     *
+     */
+    public function deleteAction()
+    {
+        $id = !empty($_GET['id']) ? $_GET['id'] : null;
+        if (isset($_SESSION['cart'][$id])) {
+            $cart = new Cart();
+            $cart->deleteItem($id);
+        }
         if ($this->isAjax()) {
             $this->loadView('cart_modal');
         }
